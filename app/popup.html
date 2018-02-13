@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <!-- build:css styles/popup-vendor.css -->
+    <!-- bower:css -->
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css styles/main.css -->
+    <link href="styles/main.css" rel="stylesheet">
+    <!-- endbuild -->
+  </head>
+  <body>
+
+    <div id="app" style="min-width: 320px;">
+        <toolbar inline-template>
+            <div class="container">
+                <div class="row py-3">
+
+                    <div class="col-12 mt-1 mt-md-0">
+                        <img src="images/selesti.svg" alt="Selesti">
+                    </div>
+
+                    <div class="col-md-4 mt-4 mt-md-0 d-flex">
+                        <div class="btn-group" style="width: 50%;">
+                            <button tabindex="-1" @click="toggleEditing" class="btn btn-sm btn-outline-primary" v-if="!adding">Edit Links</button>
+                            <button tabindex="-1" @click="saveLinks" class="btn btn-sm btn-outline-primary" v-if="adding">Save Links</button>
+                            <button tabindex="-1" @click="toggleEditing" class="btn btn-sm btn-outline-primary" v-if="adding">Cancel</button>
+                        </div>
+                        <div style="width: 50%;" class="text-right">
+                            <button tabindex="-1" @click="clearList" class="btn btn-sm btn-outline-primary" v-if="adding">Clear links</button>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 mt-4 mt-md-0 d-flex" v-if="!adding">
+                        <div style="width: calc(100% - 60px)">
+                            <select tabindex="-1" @change="goToPage" class="form-control form-control-sm" v-model="active">
+                                <option selected value="0">-- Select a URL --</option>
+                                <option v-for="url in dropdown" :value="url">{{ displayUrl(url) }}</option>
+                            </select>
+                        </div>
+                        <div style="width: 60px;" class="text-right">
+                            <img style="transform: translateX(-5px);" @click.exact="goToPage($event, false)" @click.ctrl="goToPage($event, true)" @click.meta="goToPage($event, true)" src="images/arrow.svg" alt="Go to URL" title="Go to URL">
+                            <img @dblclick="deleteUrl" src="images/cross.svg" alt="Double click to remove URL from list" title="Double click to remove URL from list">
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 mt-4 mt-md-0" v-if="adding">
+                        <textarea tabindex="-1" class="form-control" v-model="urls"></textarea>
+                    </div>
+
+                    <div class="col-md-4 mt-4 mt-md-0 d-flex" v-if="!adding">
+
+                        <div class="btn-group" style="width: 50%">
+                            <button tabindex="-1" @click="previous" class="btn btn-sm btn-outline-primary">Previous</button>
+                            <button tabindex="-1" @click="next" class="btn btn-sm btn-outline-primary">Next</button>
+                        </div>
+
+                        <div class="text-right" style="width: 50%">
+                            <button title="Ctrl + Click to only open unvisited" tabindex="-1" @click.exact="newTabs" @click.meta="openAllUnvisitedLinks" @click.ctrl="openAllUnvisitedLinks" class="btn btn-sm btn-outline-primary">Open in Tabs</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </toolbar>
+    </div>
+
+    <!-- build:js scripts/popup-vendor.js -->
+    <script src="bower_components/vue/dist/vue.js"></script>
+    <!-- bower:js -->
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:js scripts/popup.js -->
+    <script src="scripts/popup.js"></script>
+    <!-- endbuild -->
+  </body>
+</html>
