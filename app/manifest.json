@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "manifest_version": 2,
   "description": "A simple extension that allows you to store a list of URLs and browse through them",
+  "update_url": "https://github.com/Selesti/google-chrome-link-browser/raw/master/dist.crx",
   "icons": {
     "16": "images/icon-16.png",
     "128": "images/icon-128.png"

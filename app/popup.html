@@ -39,7 +39,7 @@
                                 <option v-for="url in dropdown" :value="url">{{ displayUrl(url) }}</option>
                             </select>
                         </div>
-                        <div style="width: 60px;" class="text-right">
+                        <div style="width: 60px;" class="text-right" v-if="this.active != '0'">
                             <img style="transform: translateX(-5px);" @click.exact="goToPage($event, false)" @click.ctrl="goToPage($event, true)" @click.meta="goToPage($event, true)" src="images/arrow.svg" alt="Go to URL" title="Go to URL">
                             <img @dblclick="deleteUrl" src="images/cross.svg" alt="Double click to remove URL from list" title="Double click to remove URL from list">
                         </div>
