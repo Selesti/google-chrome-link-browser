@@ -1,6 +1,6 @@
 {
   "name": "Selesti Link Browser",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "manifest_version": 2,
   "description": "A simple extension that allows you to store a list of URLs and browse through them",
   "update_url": "https://github.com/Selesti/google-chrome-link-browser/raw/master/dist.crx",
