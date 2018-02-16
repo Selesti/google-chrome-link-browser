@@ -37,7 +37,7 @@ Vue.component('toolbar', {
         loadFromMemory() {
             let urlArray = JSON.parse(localStorage.getItem('flem_urls') || '[]');
 
-            chrome.storage.sync.get(['flem_active', 'flem_urls', 'flem_visited'], items => {
+            chrome.storage.local.get(['flem_active', 'flem_urls', 'flem_visited'], items => {
                 let urlArray = JSON.parse(items.flem_urls || '[]');
                 this.urls = urlArray.join('\n');
 
@@ -49,7 +49,7 @@ Vue.component('toolbar', {
         saveToMemory() {
             let urlArray = this.urls.split('\n');
 
-            chrome.storage.sync.set({
+            chrome.storage.local.set({
                 'flem_active': this.active,
                 'flem_urls': JSON.stringify(urlArray),
                 'flem_visited': JSON.stringify(this.visited)
