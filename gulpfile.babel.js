@@ -1,4 +1,4 @@
-// generated on 2018-02-13 using generator-chrome-extension 0.7.0
+// generated on 2018-11-20 using generator-chrome-extension 0.7.1
 import gulp from 'gulp';
 import gulpLoadPlugins from 'gulp-load-plugins';
 import del from 'del';
@@ -124,7 +124,7 @@ gulp.task('wiredep', () => {
 gulp.task('package', function () {
   var manifest = require('./dist/manifest.json');
   return gulp.src('dist/**')
-      .pipe($.zip('linkbrowser-' + manifest.version + '.zip'))
+      .pipe($.zip('Slink-' + manifest.version + '.zip'))
       .pipe(gulp.dest('package'));
 });
 

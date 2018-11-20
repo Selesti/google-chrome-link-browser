@@ -5,7 +5,7 @@ Vue.component('toolbar', {
             urls: '',
             active: 0,
             adding: false,
-            visited: {}
+            visited: {},
         }
     },
 
@@ -27,8 +27,7 @@ Vue.component('toolbar', {
             this.active = 0;
         },
 
-        clearList()
-        {
+        clearList() {
             this.urls = '';
             this.visited = {};
             this.saveToMemory();
@@ -39,6 +38,7 @@ Vue.component('toolbar', {
 
             chrome.storage.local.get(['flem_active', 'flem_urls', 'flem_visited'], items => {
                 let urlArray = JSON.parse(items.flem_urls || '[]');
+
                 this.urls = urlArray.join('\n');
 
                 this.active = items.flem_active || 0;
@@ -52,7 +52,7 @@ Vue.component('toolbar', {
             chrome.storage.local.set({
                 'flem_active': this.active,
                 'flem_urls': JSON.stringify(urlArray),
-                'flem_visited': JSON.stringify(this.visited)
+                'flem_visited': JSON.stringify(this.visited),
             });
         },
 
@@ -70,11 +70,11 @@ Vue.component('toolbar', {
 
             if (newTab) {
                 return chrome.tabs.create({
-                    url: this.active
+                    url: this.active,
                 });
             } else {
                 return chrome.tabs.update(undefined, {
-                    url: this.active
+                    url: this.active,
                 });
             }
         },
@@ -124,7 +124,7 @@ Vue.component('toolbar', {
                 this.visited[url] = true;
 
                 chrome.tabs.create({
-                    url: url
+                    url: url,
                 });
             })
 
@@ -137,7 +137,7 @@ Vue.component('toolbar', {
                     this.visited[url] = true;
 
                     chrome.tabs.create({
-                        url: url
+                        url: url,
                     });
                 }
             });
@@ -166,27 +166,34 @@ Vue.component('toolbar', {
 
             urls = urls.filter(url => {
                 console.log(url, this.active);
+
                 return url !== this.active;
-            }).filter(url => { return url });
+            })
+                .filter(url => {
+                    return url
+                });
 
             this.urls = urls.join('\n');
 
             this.active = 0;
 
             this.saveToMemory();
-        }
+        },
 
     },
 
     computed: {
         dropdown() {
             let urls = this.urls.split('\n');
-            return urls.filter(el => { return el });
-        }
+
+            return urls.filter(el => {
+                return el;
+            });
+        },
     },
 
-})
+});
 
 new Vue({
-    el: '#app'
-})
+    el: '#app',
+});

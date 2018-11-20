@@ -1,5 +1,5 @@
 {
-  "name": "selesti/linkbrowser",
+  "name": "@selesti/slink",
   "private": true,
   "engines": {
     "node": ">=0.8.0"
